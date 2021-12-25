@@ -204,12 +204,7 @@ a {
 }
 
 /* UI Controls */
-#header-btn-container {
-  display: flex;
-  width: 30%;
-}
-
-#start-btn {
+#title__screen--button {
   background: var(--color-primary-gold);
   color: black;
   border: 3px solid var(--color-text-secondary);
@@ -218,10 +213,10 @@ a {
   box-shadow: 3px 3px var(--color-text-secondary);
   margin: auto;
   padding: 5px 0;
-  width: 100%;
+  width: 30%;
 }
 
-#start-btn:hover, #credits-btn:hover,
+#title__screen--button:hover, #credits-btn:hover,
 .replay__button:hover, .introduction__button:hover, 
 #player__name--submit:hover, .return__home:hover {
   background: white;

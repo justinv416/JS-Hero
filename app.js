@@ -222,7 +222,7 @@ function nameInputStart() {
     $('.fa-home').show();
 };
 //show name input on click
-$('#start-btn').on('click', nameInputStart);
+$('#title__screen--button').on('click', nameInputStart);
 
 //Function for game introduction. 
 function gameIntro() {
