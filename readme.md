@@ -19,5 +19,5 @@ For best experience please use google chrome.
 
 ## Acknowledgements:
 
-* Game images provided by (https://www.pngegg.com)[pngegg.com]
-* Game sounds provided by (https://mixkit.co)[mixkit.co]
+* Game images provided by [pngegg.com](https://www.pngegg.com)
+* Game sounds provided by [mixkit.co](https://mixkit.co)
