@@ -1,5 +1,7 @@
+const app = {}
+
 //Array containing srcs for enemy images
-const enemyImgs = [
+app.enemyImgs = [
     './Assets/Enemies/knight.png',
     './Assets/Enemies/dragon.png',
     './Assets/Enemies/skeleton-warrior.png',
@@ -7,8 +9,11 @@ const enemyImgs = [
     './Assets/Enemies/wizard.png'
 ];
 
+console.log(app)
+
+
 //Array containing enemy taunts.
-const enemySpeech = [
+app.enemySpeech = [
     "Prepare to lose!",
     "Got any last words?",
     "I hope this is a challenge, for a change.",
@@ -39,11 +44,11 @@ class Enemy {
 // Array containing constructed enemies.
 //May need to remove the array wrap/refactor at some point. 
 const enemies = [
-    currentEnemy1 = new Enemy('Knight', enemyImgs[0]),
-    currentEnemy2 = new Enemy('Dragon', enemyImgs[1]),
-    currentEnemy3 = new Enemy('Skeleton Warrior', enemyImgs[2]),
-    currentEnemy4 = new Enemy('Grim Reaper', enemyImgs[3]),
-    currentEnemy5 = new Enemy('Wizard', enemyImgs[4]),
+    currentEnemy1 = new Enemy('Knight', app.enemyImgs[0]),
+    currentEnemy2 = new Enemy('Dragon', app.enemyImgs[1]),
+    currentEnemy3 = new Enemy('Skeleton Warrior', app.enemyImgs[2]),
+    currentEnemy4 = new Enemy('Grim Reaper', app.enemyImgs[3]),
+    currentEnemy5 = new Enemy('Wizard', app.enemyImgs[4]),
 ];
 
 //Sounds for game.
@@ -245,10 +250,10 @@ function nameOutput() {
 const currentEnemy = $('.enemy__image');
 function generateEnemy() {
     const enemyIndex = Math.floor(Math.random() * enemies.length);
-    const speechIndex = Math.floor(Math.random() * enemySpeech.length);
+    const speechIndex = Math.floor(Math.random() * app.enemySpeech.length);
     currentEnemy.attr('src', enemies[enemyIndex].src);
     $('.enemy__name--output').text(enemies[enemyIndex].name);
-    $('.enemy__speech--output').text(enemySpeech[speechIndex]); 
+    $('.enemy__speech--output').text(app.enemySpeech[speechIndex]); 
     if(finalBoss) {
         $('.enemy__image').attr('src', './Assets/Enemies/final-boss.png');
         $('.enemy__name--output').text('Grand Dragon');
