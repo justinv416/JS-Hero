@@ -54,6 +54,13 @@ a {
   text-align: center;
 }
 
+.wrapper {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
 /* Header section */
 .title__screen {
   display: flex;
@@ -82,7 +89,7 @@ a {
   height: 350px;
 }
 
-#male-hero {
+#male__hero {
   height: auto;
   max-height: 350px;
   max-width: 300px;
@@ -92,7 +99,7 @@ a {
   margin: auto;
 }
 
-#title-hero-container {
+.title__screen--heroes {
   display: flex;
   align-items: center;
   margin: 50px auto;
@@ -191,7 +198,7 @@ a {
 
 #enemy-container {
   display: flex;
-  width: 70%;
+  width: 100%;
   margin-top: 5rem;
   justify-content: space-evenly;
 }
@@ -205,8 +212,8 @@ a {
 /* UI Controls */
 #header-btn-container {
   display: flex;
+  width: 30%;
 }
-
 
 #start-btn {
   background: var(--color-primary-gold);
@@ -217,10 +224,11 @@ a {
   box-shadow: 3px 3px var(--color-text-secondary);
   margin: auto;
   padding: 5px 0;
+  width: 100%;
 }
 
 #start-btn:hover, #credits-btn:hover,
-#replay:hover, #intro-button:hover, 
+#replay:hover, .introduction__button:hover, 
 #name-submit:hover, #return-home:hover {
   background: white;
   color: black;
@@ -228,28 +236,26 @@ a {
 }
 
 /* Introduction */
-#introduction {
+.introduction__container, #name__form {
   background: linear-gradient(360deg, hsla(246, 100%, 18%, 1) 0%, hsla(251, 100%, 51%, 1) 100%);;
   border: 3px solid var(--color-primary-gold);
   border-radius: 10px;
-  height: 50vh;
-  width: 50vw;
-  display: block;
+  width: 100%;
+  padding: 100px 0;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-evenly;
   margin: 100px auto;
 }
 
-#introduction-message, #game-win-message {
+.introduction__message, #game-win-message {
   font-size: 30px;
   color: white;
   margin: 20px;
   text-align: center;
 }
 
-#intro-button, #name-submit, 
+.introduction__button, #name-submit, 
 #replay, #return-home {
   background: var(--color-primary-gold);
   border: 3px solid var(--color-text-secondary);
@@ -258,15 +264,8 @@ a {
 }
 
 /* Name input UI */
-#form {
-  background: linear-gradient(360deg, hsla(246, 100%, 18%, 1) 0%, hsla(251, 100%, 51%, 1) 100%);;
-  border: 2px solid var(--color-primary-gold);
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 100px auto;
-  padding: 100px 0;
+.name__form--container {
+  width: 100%;
 }
 
 #name-input {

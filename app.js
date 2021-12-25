@@ -203,22 +203,22 @@ const bossQuestions = [
 
 //Function to initialize game
 function init() {
-    $('#name-input-container').hide();
+    $('.name__form--container').hide();
     $('#enemy-container').hide();
     $('#logic-container').hide();
     $('#game-over-screen').hide();
     $('#home-icon').hide();
     $('#game-win').hide();
     $('#final-boss-heading').hide();
-    $('#introduction').hide();
+    $('.introduction__container').hide();
 };
 init();
 
 //function to show name input container
 function nameInputStart() {
-    $('#title-hero-container').hide();
+    $('.title__screen--heroes').hide();
     $('#header-btn-container').hide();
-    $('#name-input-container').show();
+    $('.name__form--container').show();
     $('#home-icon').show();
 };
 //show name input on click
@@ -227,10 +227,10 @@ $('#start-btn').on('click', nameInputStart);
 //Function for game introduction. 
 function gameIntro() {
     //Maybe put this message in html instead add use a span for name.
-    $('#name-input-container').hide();
-    $('#introduction').show();
+    $('.name__form--container').hide();
+    $('.introduction__container').show();
     const introduction = `Welcome ${$('#name-input').val()}, to win this game you must successfully answer 10 javascript questions and defeat the final boss. Are you ready?`;
-    $('#introduction-message').text(introduction);
+    $('.introduction__message').text(introduction);
 };
 //Call and display game intro after name input submit. 
 $('#name-submit').on('click', gameIntro);
@@ -268,9 +268,9 @@ function generateNextEnemy() {
 
 //Function to start game.
 function startGame() {
-    $('#title-screen').hide();
-    $('#name-input-container').hide();
-    $('#introduction').hide();
+    $('#title__screen').hide();
+    $('.name__form--container').hide();
+    $('.introduction__container').hide();
     $('#logic-container').show();
     $('#enemy-container').show();
     $('#hp-output').text(currentPlayer.hp);
@@ -281,7 +281,7 @@ function startGame() {
     generateEnemy();
 }
 //Submit name and start game
-$('#intro-button').on('click', startGame)
+$('.introduction__button').on('click', startGame)
 
 //Time for questions 
 //Need to rename the following to be more semantic
@@ -312,9 +312,9 @@ function runTimeInterval() {
 
 //function to reset game 
 function returnToTitle() {
-    $('#title-screen').show();
+    $('#title__screen').show();
     $('#header-btn-container').show();
-    $('#title-hero-container').show();
+    $('.title__screen--heroes').show();
     $('#logic-container').hide();
     $('#hp-output').text(currentPlayer.hp);
     $('#answer-output').text('');

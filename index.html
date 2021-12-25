@@ -20,10 +20,9 @@
 
     <header id="title__screen" class="title__screen"> 
         <h1 class="title__screen--heading">JS-<span>HERO</span></h1>
-        
-        <div id="title-hero-container">
-            <img src="./Assets/Heroes/hero.png" alt="An image of a male knight" class="hero" id="male-hero">     
-            <img src="./Assets/Heroes/fem-hero.png" alt="An image of a female knight" class="hero" id="female-hero">     
+        <div class="title__screen--heroes">
+            <img src="./Assets/Heroes/hero.png" alt="An image of a male knight" class="hero" id="male__hero">     
+            <img src="./Assets/Heroes/fem-hero.png" alt="An image of a female knight" class="hero" id="female__hero">     
         </div>
         <div id="header-btn-container">
             <button type="button" id="start-btn">Start Game</button>
@@ -33,20 +32,26 @@
     <main>
         <!-- Full page overlay to indicate taking damage -->
         <div id="damage-overlay"></div>
-        <div id="name-input-container">
-            <form action="#" id="form">
-                <label for="name-input" id="name-label">Please enter your name</label>
-                <input type="text" id="name-input" placeholder="Enter your name here">
-                <input type="submit" id="name-submit" value="Sumbit">
-            </form>
-        </div>
-        <div id="enemy-container">
-            <img src="" alt="An image displaying current enemy" class="enemy">
-            <div id="enemy-speech-bubble">
-                <div id="enemy-ui">
-                    <h3 id="final-boss-heading">Final Boss</h3>
-                    <p id="enemy-name"><span id="enemy-name-output"></span> says:</p>
-                    <p id="enemy-speech">"<span id="enemy-speech-output"></span>"</p>
+        <div class="wrapper">
+            <div class="name__form--container">
+                <form action="#" id="name__form">
+                    <label for="name-input" id="name-label">Please enter your name</label>
+                    <input type="text" id="name-input" placeholder="Enter your name here">
+                    <input type="submit" id="name-submit" value="Sumbit">
+                </form>
+            </div>
+            <div class="introduction__container">
+                <p class="introduction__message"></p>
+                <button type="button" class="introduction__button">Begin</button>
+            </div>
+            <div id="enemy-container">
+                <img src="" alt="An image displaying current enemy" class="enemy">
+                <div id="enemy-speech-bubble">
+                    <div id="enemy-ui">
+                        <h3 id="final-boss-heading">Final Boss</h3>
+                        <p id="enemy-name"><span id="enemy-name-output"></span> says:</p>
+                        <p id="enemy-speech">"<span id="enemy-speech-output"></span>"</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,11 +77,7 @@
         </div>
         <div id="home-container">
             <img src="./Assets/Icons/home.png" alt="Home icon" id="home-icon" title="Go back to title screen">
-        </div>
-        <div id="introduction">
-            <p id="introduction-message"></p>
-            <button type="button" id="intro-button">Begin</button>
-        </div>
+        
         <div id="game-win">
             <p id="game-win-message"></p>
             <button type="button" id="return-home">Return To Title</button>
