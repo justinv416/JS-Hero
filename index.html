@@ -7,6 +7,8 @@
     <meta name="description" content="A old school fantasy-rpg inspired multiple choice game featuring Javascript trivia questions.">
     <!--Icon provided by Freepik from Flaticon.com-->
     <link rel="icon" href="./Assets/Icons/mchero-logo.png">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/35e5501a65.js" crossorigin="anonymous"></script>
     <!--Google fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,52 +37,48 @@
         <div class="wrapper">
             <div class="name__form--container">
                 <form action="#" id="name__form">
-                    <label for="name-input" id="name-label">Please enter your name</label>
-                    <input type="text" id="name-input" placeholder="Enter your name here">
-                    <input type="submit" id="name-submit" value="Sumbit">
+                    <label for="name-input" id="player__name--label">Please enter your name</label>
+                    <input type="text" id="player__name--input" placeholder="Enter your name here">
+                    <input type="submit" id="player__name--submit" value="Sumbit">
                 </form>
             </div>
             <div class="introduction__container">
                 <p class="introduction__message"></p>
                 <button type="button" class="introduction__button">Begin</button>
             </div>
-            <div id="enemy-container">
-                <img src="" alt="An image displaying current enemy" class="enemy">
-                <div id="enemy-speech-bubble">
-                    <div id="enemy-ui">
-                        <h3 id="final-boss-heading">Final Boss</h3>
-                        <p id="enemy-name"><span id="enemy-name-output"></span> says:</p>
-                        <p id="enemy-speech">"<span id="enemy-speech-output"></span>"</p>
-                    </div>
+            <div class="enemy__container">
+                <img src="" alt="An image displaying current enemy" class="enemy__image">
+                <div class="enemy__ui">
+                    <h3 id="final-boss-heading">Final Boss</h3>
+                    <p class="enemy__name"><span class="enemy__name--output"></span> says:</p>
+                    <p class="enemy__speech">"<span class="enemy__speech--output"></span>"</p>
                 </div>
             </div>
-        </div>
-        <div id="logic-container">
-            <div id="options-container">
-                <div id="question-container">
-                    <h2 id="question__heading">Question: <span id="question-output"></span></h2>
+            <div class="logic__container">
+                <div class="logic__options">
+                    <h2 class="logic__question">Question: <span class="logic__question--output"></span></h2>
+                    <button type="button" class="logic__question--button" id="a"></button>
+                    <button type="button" class="logic__question--button" id="b"></button>
+                    <button type="button" class="logic__question--button" id="c"></button>
                 </div>
-                <button type="button" class="option-btn" id="a"></button>
-                <button type="button" class="option-btn" id="b"></button>
-                <button type="button" class="option-btn" id="c"></button>
+                <div class="player__ui">
+                    <p class="player__ui--information">Hero Name: <span class="player__name--output output"></span></p>
+                    <p class="player__ui--information">HP: <span class="player__hp--output output"></span></p>
+                    <p class="player__ui--information">Time: <span class="player__time--output output"></span></p>
+                    <p class="player__ui--information">Answer: <span class="player__answer--output output"></span></p>
+                </div>
             </div>
-            <div id="player-ui">
-                <p class="player-ui-element">Hero Name: <span id="player-name-output" class="output"></span></p>
-                <p class="player-ui-element">HP: <span id="hp-output" class="output"></span></p>
-                <p class="player-ui-element">Time: <span id="time-output" class="output"></span></p>
-                <p class="player-ui-element">Answer: <span id="answer-output" class="output"></span></p>
+            <div class="gameOver__screen">
+                <p class="gameOver__text">Game Over</p>
+                <button type="button" class="replay__button">Play Again?</button>
             </div>
-        </div>
-        <div id="game-over-screen">
-            <p id="game-over-text">Game Over</p>
-            <button type="button" id="replay">Play Again?</button>
+            <div class="gameWin__screen">
+                <p class="gameWin__message"></p>
+                <button type="button" class="return__home">Return To Title</button>
+            </div>
         </div>
         <div id="home-container">
-            <img src="./Assets/Icons/home.png" alt="Home icon" id="home-icon" title="Go back to title screen">
-        
-        <div id="game-win">
-            <p id="game-win-message"></p>
-            <button type="button" id="return-home">Return To Title</button>
+            <i class="fas fa-home"></i>
         </div>
     </main>
     

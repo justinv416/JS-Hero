@@ -204,11 +204,11 @@ const bossQuestions = [
 //Function to initialize game
 function init() {
     $('.name__form--container').hide();
-    $('#enemy-container').hide();
-    $('#logic-container').hide();
-    $('#game-over-screen').hide();
-    $('#home-icon').hide();
-    $('#game-win').hide();
+    $('.enemy__container').hide();
+    $('.logic__container').hide();
+    $('.gameOver__screen').hide();
+    $('.fa-home').hide();
+    $('.gameWin__screen').hide();
     $('#final-boss-heading').hide();
     $('.introduction__container').hide();
 };
@@ -219,7 +219,7 @@ function nameInputStart() {
     $('.title__screen--heroes').hide();
     $('#header-btn-container').hide();
     $('.name__form--container').show();
-    $('#home-icon').show();
+    $('.fa-home').show();
 };
 //show name input on click
 $('#start-btn').on('click', nameInputStart);
@@ -229,31 +229,31 @@ function gameIntro() {
     //Maybe put this message in html instead add use a span for name.
     $('.name__form--container').hide();
     $('.introduction__container').show();
-    const introduction = `Welcome ${$('#name-input').val()}, to win this game you must successfully answer 10 javascript questions and defeat the final boss. Are you ready?`;
+    const introduction = `Welcome ${$('#player__name--input').val()}, to win this game you must successfully answer 10 javascript questions and defeat the final boss. Are you ready?`;
     $('.introduction__message').text(introduction);
 };
 //Call and display game intro after name input submit. 
-$('#name-submit').on('click', gameIntro);
+$('#player__name--submit').on('click', gameIntro);
 
 //Function to display the user name
 function nameOutput() {
-    currentPlayer.name = $('#name-input').val();
-    $('#player-name-output').text(currentPlayer.name)
+    currentPlayer.name = $('#player__name--input').val();
+    $('.player__name--output').text(currentPlayer.name)
 };
 
 //function to generate a random enemy, working but should refactor.
 //Not sure if im using parameters correctly, should look into it at some point. 
-const currentEnemy = $('.enemy');
+const currentEnemy = $('.enemy__image');
 function generateEnemy() {
     const enemyIndex = Math.floor(Math.random() * enemies.length);
     const speechIndex = Math.floor(Math.random() * enemySpeech.length);
     currentEnemy.attr('src', enemies[enemyIndex].src);
-    $('#enemy-name-output').text(enemies[enemyIndex].name);
-    $('#enemy-speech-output').text(enemySpeech[speechIndex]); 
+    $('.enemy__name--output').text(enemies[enemyIndex].name);
+    $('.enemy__speech--output').text(enemySpeech[speechIndex]); 
     if(finalBoss) {
-        $('.enemy').attr('src', './Assets/Enemies/final-boss.png');
-        $('#enemy-name-output').text('Grand Dragon');
-        $('#enemy-speech-output').text("You won't solve these");
+        $('.enemy__image').attr('src', './Assets/Enemies/final-boss.png');
+        $('.enemy__name--output').text('Grand Dragon');
+        $('.enemy__speech--output').text("You won't solve these");
         $('#final-boss-heading').show();
     }
 };
@@ -271,9 +271,9 @@ function startGame() {
     $('#title__screen').hide();
     $('.name__form--container').hide();
     $('.introduction__container').hide();
-    $('#logic-container').show();
-    $('#enemy-container').show();
-    $('#hp-output').text(currentPlayer.hp);
+    $('.logic__container').show();
+    $('.enemy__container').show();
+    $('.player__hp--output').text(currentPlayer.hp);
     $('#enemy-speech').text(currentEnemy1.taunt);
     nameOutput();
     runTimeInterval();
@@ -288,7 +288,7 @@ $('.introduction__button').on('click', startGame)
 let time = 60;
 function questionTime() {
     time--;
-    $('#time-output').text(time)
+    $('.player__time--output').text(time)
     if(time <= 0) {
         clearTimeInterval();
         takeHit();
@@ -315,9 +315,9 @@ function returnToTitle() {
     $('#title__screen').show();
     $('#header-btn-container').show();
     $('.title__screen--heroes').show();
-    $('#logic-container').hide();
-    $('#hp-output').text(currentPlayer.hp);
-    $('#answer-output').text('');
+    $('.logic__container').hide();
+    $('.player__hp--output').text(currentPlayer.hp);
+    $('player__answer--output').text('');
     currentPlayer.hp = 100;
     time = 60;
     questionIndex = -1;
@@ -326,14 +326,14 @@ function returnToTitle() {
     init();
 }
 //Runs above function on click
-$('#home-icon').click(returnToTitle);
-$('#replay').on('click', returnToTitle);
-$('#return-home').on('click', returnToTitle);
+$('.fa-home').click(returnToTitle);
+$('.replay__button').on('click', returnToTitle);
+$('.return__home').on('click', returnToTitle);
 
 //Function to take 
 function takeHit() {
     currentPlayer.hp -= 25;
-    $('#hp-output').text(currentPlayer.hp);
+    $('.player__hp--output').text(currentPlayer.hp);
     $('#damage-overlay').addClass('damage');
     takeHitSound.play();
     setTimeout(function() {
@@ -356,25 +356,25 @@ function doDamage() {
 //function to indicate game over
 function gameOver() {
     if (currentPlayer.hp === 0) {
-        $('#game-over-screen').show();
-        $('#logic-container').hide();
-        $('#enemy-container').hide();
+        $('.gameOver__screen').show();
+        $('.logic__container').hide();
+        $('.enemy__container').hide();
     };
 };
 
 //Function to display game win screen.
 function gameWon() {
-    $('#logic-container').hide();
-    $('#enemy-container').hide();
-    $('#game-win-message').text(`Congratulations ${currentPlayer.name}! You have successfully 
+    $('.logic__container').hide();
+    $('.enemy__container').hide();
+    $('.gameWin__message').text(`Congratulations ${currentPlayer.name}! You have successfully 
     defeated the dragon and won the game, please play again!`); 
-    $('#game-win').show();
+    $('.gameWin__screen').show();
     winSound.play();
 };
 
 //Function to display boss questions
 function displayBossQuestions() {
-    $('#question-output').text(`${bossQuestions[questionIndex].question}`);
+    $('.logic__question--output').text(`${bossQuestions[questionIndex].question}`);
     $('#a').text(bossQuestions[questionIndex].options.a);
     $('#b').text(bossQuestions[questionIndex].options.b);
     $('#c').text(bossQuestions[questionIndex].options.c);
@@ -386,7 +386,7 @@ let finalBoss = false;
 function displayQuestion() {
     questionIndex++;
     if (questionIndex < questions.length) {
-        $('#question-output').text(`${questions[questionIndex].question}`);
+        $('.logic__question--output').text(`${questions[questionIndex].question}`);
         $('#a').text(questions[questionIndex].options.a);
         $('#b').text(questions[questionIndex].options.b);
         $('#c').text(questions[questionIndex].options.c);
@@ -400,13 +400,13 @@ function displayQuestion() {
 };
 
 //Binds a function to each option button to check if answer is correct/incorrect
-const optionBtn = $('.option-btn');
+const optionBtn = $('.logic__question--button');
 optionBtn.click(function() {
     //Should change to dataset instead of id in the future
     let btnid = ($(this).attr('id'));
     if (btnid === questions[questionIndex].answer && !finalBoss) {
-        $('#answer-output').text('correct');
-        $('#answer-output').css('color', 'lawngreen');
+        $('.player__answer--output').text('correct');
+        $('.player__answer--output').css('color', 'lawngreen');
         time = 60;
         doDamage();
         displayQuestion();
@@ -426,8 +426,8 @@ optionBtn.click(function() {
             displayBossQuestions();
         };
     } else {
-        $('#answer-output').text('incorrect');
-        $('#answer-output').css('color', 'red');
+        $('.player__answer--output').text('incorrect');
+        $('.player__answer--output').css('color', 'red');
         takeHit();
         time = 60;
         clearTimeInterval();
