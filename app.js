@@ -211,23 +211,8 @@ function init() {
     $('#game-win').hide();
     $('#final-boss-heading').hide();
     $('#introduction').hide();
-    $('#credits').hide();
 };
 init();
-
-//Functions to show/hide credits
-function showCredits() {
-    $('#credits').show();
-    $('#title-hero-container').hide();
-};
-
-function hideCredits() {
-    $('#credits').hide();
-    $('#title-hero-container').show();
-}
-//Calls above functions on button click
-$('#credits-btn').on('click', showCredits)
-$('#close-icon').on('click', hideCredits)
 
 //function to show name input container
 function nameInputStart() {
@@ -294,7 +279,6 @@ function startGame() {
     runTimeInterval();
     displayQuestion();
     generateEnemy();
-    hideCredits();
 }
 //Submit name and start game
 $('#intro-button').on('click', startGame)

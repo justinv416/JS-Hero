@@ -16,3 +16,8 @@ A multiple chocie style game with javascript triva questions in the style of an 
 # Notes:
 
 For best experience please use google chrome.
+
+## Acknowledgements:
+
+* Game images provided by (pngegg.com)[https://www.pngegg.com]
+* Game sounds provided by (mixkit.co)[https://mixkit.co]
