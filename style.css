@@ -38,10 +38,16 @@ button, input[type=submit] {
 }
 
 footer {
+  width: 100%;
   color: var(--color-text);
   margin: auto;
-  text-align: center;
   font-size: 20px;
+}
+
+footer .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 a {
@@ -56,10 +62,13 @@ a {
 
 .wrapper {
   width: 90%;
+  margin: 0 auto;
+}
+
+main .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 auto;
 }
 
 /* Header section */
@@ -78,21 +87,20 @@ a {
 
  .hero {
   width: 100%;
-  max-width: 400px;
-  height: auto;
-  max-height: 400px;
+  max-width: 300px;
+  height: 500px;
   image-rendering: pixelated;
 }
 
 .enemy__image {
   width: 100%;
   max-width: 300px;
-  height: 350px;
+  max-height: 100%;
 }
 
 #male__hero {
   height: auto;
-  max-height: 350px;
+  height: 400px;
   max-width: 300px;
 }
 
@@ -103,7 +111,6 @@ a {
 .title__screen--heroes {
   display: flex;
   align-items: center;
-  margin: 50px auto;
 }
 
 /* Main section */
@@ -169,12 +176,12 @@ a {
 /* Enemy UI */
 .enemy__ui {
   width: 50%;
+  height: 70%;
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  height: 70%;
   border: 1px solid var(--color-primary-gold);
   border-radius: 10px;
   color: white;
@@ -239,7 +246,7 @@ a {
 .introduction__message, .gameWin__message {
   font-size: 30px;
   color: white;
-  margin: 20px;
+  padding: 20px;
   text-align: center;
 }
 
@@ -249,6 +256,7 @@ a {
   border: 3px solid var(--color-text-secondary);
   border-radius: 10px;
   padding: 5px 0;
+  width: 30%;
 }
 
 /* Name input UI */
@@ -273,6 +281,7 @@ a {
   font-size: 40px;
   color: var(--color-text);
   text-shadow: 2px 2px var(--color-text-secondary);
+  text-align: center;
 }
 
 /* Game Over/Win Screen */
@@ -300,9 +309,6 @@ a {
 .fa-home {
   font-size: 3.5rem;
   color: var(--color-text);
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
   /* Note: image-rendering: pixelated; not currently supported by firefox */
   image-rendering: pixelated;
 }
@@ -371,12 +377,38 @@ a {
   }
 }
 
-@media (max-width: 1200px) {
-  #player__name--label {
-    font-size: 1rem;
-  }
-  
+@media (max-width: 1200px) { 
   #player__name--input {
     max-width: 90%;
+  }
+
+  #title__screen--button {
+    width: 80%;
+  }
+
+  .introduction__button, #player__name--submit, 
+  .replay__button, .return__home {
+    width: 80%;
+  }
+}
+
+@media (max-width: 700px) { 
+
+  .enemy__container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .enemy__ui {
+    width: 90%;
+    margin-top: 30px;
+  }
+
+  .enemy__image {
+    height: 300px;
+  }
+
+  .fa-home {
+    font-size: 3rem;
   }
 }

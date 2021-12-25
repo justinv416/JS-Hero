@@ -207,7 +207,6 @@ function init() {
     $('.enemy__container').hide();
     $('.logic__container').hide();
     $('.gameOver__screen').hide();
-    $('.fa-home').hide();
     $('.gameWin__screen').hide();
     $('#final-boss-heading').hide();
     $('.introduction__container').hide();
@@ -217,7 +216,7 @@ init();
 //function to show name input container
 function nameInputStart() {
     $('.title__screen--heroes').hide();
-    $('#header-btn-container').hide();
+    $('#title__screen--button').hide();
     $('.name__form--container').show();
     $('.fa-home').show();
 };
@@ -313,7 +312,7 @@ function runTimeInterval() {
 //function to reset game 
 function returnToTitle() {
     $('#title__screen').show();
-    $('#header-btn-container').show();
+    $('#title__screen--button').show();
     $('.title__screen--heroes').show();
     $('.logic__container').hide();
     $('.player__hp--output').text(currentPlayer.hp);
