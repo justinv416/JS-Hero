@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A old school fantasy-rpg inspired multiple choice game featuring Javascript trivia questions.">
+    <!--Icon provided by Freepik from Flaticon.com-->
+    <link rel="icon" href="./Assets/Icons/mchero-logo.png">
+    <!--Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <!--Stylesheet-->
+    <link rel="stylesheet" href="style.css">
+    <title>JS-Hero</title>
+</head>
+
+<body>
+
+    <header id="title-screen">
+        <h1 id="title-heading">JS-<span>HERO</span></h1>
+        <div id="credits">
+            <img src="./Assets/Icons/close.png" alt="" id="close-icon" title="Close Credits">
+            <div>Icons made by <a href="https://creativemarket.com/Becris" title="Becris" class="credits-link" target="blank">Becris</a> from <a href="https://www.flaticon.com/" title="Flaticon" class="credits-link" target="blank">www.flaticon.com</a></div>      
+            <div>Icons made by <a href="https://www.freepik.com" title="Freepik" class="credits-link" target="blank">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon" class="credits-link" target="blank">www.flaticon.com</a></div>
+            <div>Icons made by <a href="https://www.flaticon.com/authors/ariefstudio" title="ariefstudio" class="credits-link" target="blank">ariefstudio</a> from <a href="https://www.flaticon.com/" title="Flaticon" class="credits-link" target="blank">www.flaticon.com</a></div>
+            <div>Game images provided by <a href="https://www.pngegg.com" class="credits-link" target="blank">www.pngegg.com</a></div>
+            <div>Game sounds provided by <a href="https://mixkit.co" class="credits-link" target="blank">www.mixkit.co</a></div>
+        </div>
+        <div id="title-hero-container">
+            <img src="./Assets/Heroes/hero.png" alt="An image of a male knight" class="hero" id="male-hero">     
+            <img src="./Assets/Heroes/fem-hero.png" alt="An image of a female knight" class="hero" id="female-hero">     
+        </div>
+        <div id="header-btn-container">
+            <button type="button" id="start-btn">Start Game</button>
+            <button type="button" id="credits-btn">View Credits</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Full page overlay to indicate taking damage -->
+        <div id="damage-overlay"></div>
+        <div id="name-input-container">
+            <form action="#" id="form">
+                <label for="name-input" id="name-label">Please enter your name</label>
+                <input type="text" id="name-input" placeholder="Enter your name here">
+                <input type="submit" id="name-submit" value="Sumbit">
+            </form>
+        </div>
+        <div id="enemy-container">
+            <img src="" alt="An image displaying current enemy" class="enemy">
+            <div id="enemy-speech-bubble">
+                <div id="enemy-ui">
+                    <h3 id="final-boss-heading">Final Boss</h3>
+                    <p id="enemy-name"><span id="enemy-name-output"></span> says:</p>
+                    <p id="enemy-speech">"<span id="enemy-speech-output"></span>"</p>
+                </div>
+            </div>
+        </div>
+        <div id="logic-container">
+            <div id="options-container">
+                <div id="question-container">
+                    <h2 id="question__heading">Question: <span id="question-output"></span></h2>
+                </div>
+                <button type="button" class="option-btn" id="a"></button>
+                <button type="button" class="option-btn" id="b"></button>
+                <button type="button" class="option-btn" id="c"></button>
+            </div>
+            <div id="player-ui">
+                <p class="player-ui-element">Hero Name: <span id="player-name-output" class="output"></span></p>
+                <p class="player-ui-element">HP: <span id="hp-output" class="output"></span></p>
+                <p class="player-ui-element">Time: <span id="time-output" class="output"></span></p>
+                <p class="player-ui-element">Answer: <span id="answer-output" class="output"></span></p>
+            </div>
+        </div>
+        <div id="game-over-screen">
+            <p id="game-over-text">Game Over</p>
+            <button type="button" id="replay">Play Again?</button>
+        </div>
+        <div id="home-container">
+            <img src="./Assets/Icons/home.png" alt="Home icon" id="home-icon" title="Go back to title screen">
+        </div>
+        <div id="introduction">
+            <p id="introduction-message"></p>
+            <button type="button" id="intro-button">Begin</button>
+        </div>
+        <div id="game-win">
+            <p id="game-win-message"></p>
+            <button type="button" id="return-home">Return To Title</button>
+        </div>
+    </main>
+    
+    <footer id="footer">
+        <!-- At some point, will link my name to my portfolio (when its ready) instead-->
+        <p>Created by <a href="https://github.com/justinv416" target="blank" id="my-link">Justin Vien</a> @ <a href="https://junocollege.com" target="blank" id="juno-link">Juno College</a></p>
+    </footer>
+    
+    <!-- Scripts -->
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
+
+<!-- At some point maybe create a credits page -->
+<!-- Credits: -->
+<!--  -->
+<!--  -->
+<!--  -->

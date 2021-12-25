@@ -1,0 +1,9 @@
+✔ interval keeps running after boss has been defeated, thus, showing game over screen if left on too long. @done(21-11-01 19:19)
+
+✔ wrong answer logic broken past fourth question @done(21-10-29 13:32)
+
+✔ Damage animation not working, need it to fire each time player takes hit @done(21-10-31 15:06)
+
+✔ Deal damage shake animation same issue as above. @done(21-10-31 15:06)
+
+☐ Audio causing issues/throwing errors in console will need to investigate. 

@@ -1,0 +1,418 @@
+/* Global CSS Variables */
+:root {
+  --color-primary-gold: #FFD700;
+  --color-juno: #EA593E;
+  --color-github: #6495ED; 
+  --color-damage: #660000;
+  --color-text: #fff;
+  --color-text-secondary: #000; 
+}
+
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global styling */
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'VT323', monospace;
+  background: url(./Assets/battle-background-sunny-hillsx1.png) no-repeat center center fixed;
+  background-size: cover;
+  /* Note: image-rendering: pixelated; not currently supported by firefox */
+  image-rendering: pixelated;
+  position: relative;
+}
+
+button, input[type=submit] { 
+  width: 300px;
+  height: 50px;
+  font-family: 'VT323', monospace;
+  font-size: 30px;
+}
+
+footer {
+  color: var(--color-text);
+  margin: auto;
+  text-align: center;
+  font-size: 20px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::placeholder {
+  color: var(--color-text);
+  text-align: center;
+}
+
+/* Header section */
+#title-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#title-heading {
+  color: var(--color-primary-gold);
+  font-size: 100px;
+  text-shadow: 5px 5px var(--color-text-secondary);
+}
+
+ .hero {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  max-height: 400px;
+  image-rendering: pixelated;
+}
+
+.enemy {
+  width: 100%;
+  max-width: 300px;
+  height: 350px;
+}
+
+#male-hero {
+  height: auto;
+  max-height: 350px;
+  max-width: 300px;
+}
+
+#enemy-container, #title-hero-container {
+  margin: auto;
+}
+
+#title-hero-container {
+  display: flex;
+  align-items: center;
+  margin: 50px auto;
+}
+
+/* Main section */
+/* Player UI */
+#logic-container {
+  background: linear-gradient(360deg, hsla(246, 100%, 18%, 1) 0%, hsla(251, 100%, 51%, 1) 100%);;
+  border: 2px solid var(--color-primary-gold);
+  border-radius: 10px;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  margin-top: 5vh;
+}
+
+#question__heading {
+  text-align: center;
+  font-size: 2rem;
+  text-shadow: 2px 2px var(--color-text-secondary);
+  margin: 1rem auto;
+}
+
+#options-container {
+  width: 100%;
+}
+
+.option-btn {
+  width: 100%;
+  background: none;
+  color: var(--color-text);
+  border-top: 2px solid var(--color-primary-gold);
+  margin: auto;
+}
+
+.option-btn:last-of-type {
+  border-bottom: 2px solid var(--color-primary-gold);
+}
+
+.option-btn:hover {
+  background-color: var(--color-text);
+  color: var(--color-text-secondary);
+}
+
+#player-ui {
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 25px;
+  margin: 10px auto;
+}
+
+.player-ui-element {
+  color: var(--color-primary-gold);
+}
+
+.output {
+  color: var(--color-text);
+}
+
+/* Enemy UI */
+#enemy-speech-bubble {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 70%;
+  border: 1px solid var(--color-primary-gold);
+  border-radius: 10px;
+  color: white;
+  background: linear-gradient(360deg, hsla(246, 100%, 18%, 1) 0%, hsla(251, 100%, 51%, 1) 100%);;
+}
+
+#enemy-ui {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#enemy-name {
+  font-size: 2rem;
+  margin: 10px auto;
+}
+
+#enemy-speech {
+  font-size: 2rem;
+  font-style: italic;
+  margin: 10px auto;
+}
+
+#enemy-container {
+  display: flex;
+  width: 70%;
+  margin-top: 5rem;
+  justify-content: space-evenly;
+}
+
+#final-boss-heading {
+  font-size: 40px;
+  color: var(--color-primary-gold);
+  text-shadow: 3px 3px var(--color-text-secondary);
+}
+
+/* UI Controls */
+#start-btn, #credits-btn {
+  background: var(--color-primary-gold);
+  color: black;
+  border: 3px solid var(--color-text-secondary);
+  transition: all .2s ease-in-out;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 50%;
+  height: 50px;
+  max-height: 60px;
+  box-shadow: 3px 3px var(--color-text-secondary);
+  margin: auto;
+}
+
+#start-btn:hover, #credits-btn:hover,
+#replay:hover, #intro-button:hover, 
+#name-submit:hover, #return-home:hover {
+  background: white;
+  color: black;
+  transition: all .2s ease-in-out;
+}
+
+/* Introduction */
+#introduction {
+  background: linear-gradient(360deg, hsla(246, 100%, 18%, 1) 0%, hsla(251, 100%, 51%, 1) 100%);;
+  border: 3px solid var(--color-primary-gold);
+  border-radius: 10px;
+  height: 50vh;
+  width: 50vw;
+  display: block;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 100px auto;
+}
+
+#introduction-message, #game-win-message {
+  font-size: 30px;
+  color: white;
+  margin: 20px;
+  text-align: center;
+}
+
+#intro-button, #name-submit, 
+#replay, #return-home {
+  background: var(--color-primary-gold);
+  border: 3px solid var(--color-text-secondary);
+  border-radius: 10px;
+}
+
+/* Name input UI */
+#form {
+  background: linear-gradient(360deg, hsla(246, 100%, 18%, 1) 0%, hsla(251, 100%, 51%, 1) 100%);;
+  border: 2px solid var(--color-primary-gold);
+  border-radius: 10px;
+  height: 50vh;
+  width: 50vw;
+  display: block;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 100px auto;
+}
+
+#name-input {
+  height: 40px;
+  width: 50%;
+  background: none;
+  border: 2px solid var(--color-primary-gold);
+  border-radius: 5px;
+  color: var(--color-text);
+  font-size: 20px;
+  text-align: center;
+}
+
+#name-label{
+  font-size: 40px;
+  color: var(--color-text);
+  text-shadow: 2px 2px var(--color-text-secondary);
+}
+
+/* Game Over/Win Screen */
+#game-over-screen, #game-win {
+  background: linear-gradient(360deg, hsla(246, 100%, 18%, 1) 0%, hsla(251, 100%, 51%, 1) 100%);;
+  height: 50vh;
+  width: 50vw;
+  border: 1px solid var(--color-primary-gold);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  margin: 25vh auto 0 auto;
+}
+
+#game-over-text {
+  font-size: 50px;
+  color: var(--color-text);
+  text-shadow: 2px 2px var(--color-text-secondary);
+}
+
+/* Home icon */
+#home-icon {
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  /* Note: image-rendering: pixelated; not currently supported by firefox */
+  image-rendering: pixelated;
+}
+
+/* Footer */
+#juno-link:hover {
+  color: var(--color-juno);
+  transition: color .1s;
+}
+
+#juno-link:visited {
+  text-decoration: var(--color-text);
+}
+
+#my-link:hover {
+  color: var(--color-github);
+  transition: color .1s;
+}
+
+/* Credits */
+#credits {
+  background: linear-gradient(360deg, hsla(246, 100%, 18%, 1) 0%, hsla(251, 100%, 51%, 1) 100%);;
+  height: 50vh;
+  width: 50vw;
+  border: 1px solid var(--color-primary-gold);
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  color: var(--color-text);
+  font-size: 30px;
+  margin: auto;
+  position: relative;
+}
+
+.credits-link {
+  color: var(--color-primary-gold);
+}
+
+#close-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0;
+  right: 0;
+  margin: 10px 10px 0 0;
+}
+
+#close-icon:hover {
+  width: 25px;
+  height: 25px;
+  transition: all .2s;
+}
+
+/* Animations */
+.shake {
+  animation: shake 1s forwards;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+/* Damage overlay */
+#damage-overlay {
+  background-color: var(--color-damage);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.damage {
+  background-color: var(--color-damage);
+  animation: 0.4s take-damage forwards;
+}
+
+@keyframes take-damage {
+  0% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 0;
+  }
+}

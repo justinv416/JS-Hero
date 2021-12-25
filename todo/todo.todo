@@ -1,0 +1,26 @@
+//Javscript
+✔ add sounds for title, attack, defeat, victory, etc. @done(21-11-02 16:15)
+
+✔ add enemy defeat animations @done(21-10-31 15:38)
+
+☐ replace hp numeric value with hearts png
+
+☐ refactor/DRY up code
+
+    ☐ Organize with namespace objects
+
+//CSS
+☐ Refactor/dry up code 
+
+☐ make app completely responsive
+
+☐ maybe convert to sass/bem for easier maintence
+
+//HTML
+☐ clean up/refactor/maybe add/remove ids and replace with classes
+
+✔ add credits page on title screen @done(21-11-04 20:31)
+
+//Documentation
+
+☐ compress and resize project demo gif, too big
