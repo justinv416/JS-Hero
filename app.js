@@ -208,7 +208,7 @@ app.bossQuestions = [
 
 //function to show name input container
 app.nameInputStart = function(){
-    $('.title__screen--heroes').hide();
+    $('.title__screen').hide();
     $('#title__screen--button').hide();
     $('.name__form--container').show();
 };
@@ -305,7 +305,7 @@ app.runTimeInterval = function(){
 app.returnToTitle = function(){
     $('#title__screen').show();
     $('#title__screen--button').show();
-    $('.title__screen--heroes').show();
+    $('.title__screen').show();
     $('.logic__container').hide();
     $('.player__hp--output').text(currentPlayer.hp);
     $('player__answer--output').text('');
