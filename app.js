@@ -43,7 +43,7 @@ class Enemy {
 
 // Array containing constructed enemies.
 //May need to remove the array wrap/refactor at some point. 
-const enemies = [
+app.enemies = [
     currentEnemy1 = new Enemy('Knight', app.enemyImgs[0]),
     currentEnemy2 = new Enemy('Dragon', app.enemyImgs[1]),
     currentEnemy3 = new Enemy('Skeleton Warrior', app.enemyImgs[2]),
@@ -52,19 +52,19 @@ const enemies = [
 ];
 
 //Sounds for game.
-const hitSound = new Howl({
+app.hitSound = new Howl({
     src: ['./Assets/Sounds/mixkit-martial-arts-fast-punch-2047.wav'],
     volume: 0.1,
     autoplay: false
 });
 
-const takeHitSound = new Howl({
+app.takeHitSound = new Howl({
     src: ['./Assets/Sounds/mixkit-punch-with-a-hard-whistle-2050.wav'],
     volume: 0.1,
     autoplay: false
 });
 
-const winSound = new Howl({
+app.winSound = new Howl({
     src: ['./Assets/Sounds/mixkit-medieval-show-fanfare-announcement-226.wav'],
     volume: 0.02,
     autoplay: false
@@ -73,7 +73,7 @@ const winSound = new Howl({
 
 //Questions for game. 
 //Should store in a seperate file at some point, and either import/fetch. 
-const questions = [
+app.questions = [
     {
         question: 'What is the correct syntax for a template literal?',
         options: {
@@ -167,7 +167,7 @@ const questions = [
 ];
 
 //Final boss specific questions. 
-const bossQuestions = [
+app.bossQuestions = [
     {
         question: "Boolean('pizza' < 'salad')",
         options: {
@@ -206,30 +206,17 @@ const bossQuestions = [
     },
 ];
 
-//Function to initialize game
-function init() {
-    $('.name__form--container').hide();
-    $('.enemy__container').hide();
-    $('.logic__container').hide();
-    $('.gameOver__screen').hide();
-    $('.gameWin__screen').hide();
-    $('#final-boss-heading').hide();
-    $('.introduction__container').hide();
-};
-init();
-
 //function to show name input container
-function nameInputStart() {
+app.nameInputStart = function(){
     $('.title__screen--heroes').hide();
     $('#title__screen--button').hide();
     $('.name__form--container').show();
-    $('.fa-home').show();
 };
 //show name input on click
-$('#title__screen--button').on('click', nameInputStart);
+$('#title__screen--button').on('click', app.nameInputStart);
 
 //Function for game introduction. 
-function gameIntro() {
+app.gameIntro = function(){
     //Maybe put this message in html instead add use a span for name.
     $('.name__form--container').hide();
     $('.introduction__container').show();
@@ -237,10 +224,10 @@ function gameIntro() {
     $('.introduction__message').text(introduction);
 };
 //Call and display game intro after name input submit. 
-$('#player__name--submit').on('click', gameIntro);
+$('#player__name--submit').on('click', app.gameIntro);
 
 //Function to display the user name
-function nameOutput() {
+app.nameOutput = function(){
     currentPlayer.name = $('#player__name--input').val();
     $('.player__name--output').text(currentPlayer.name)
 };
@@ -249,10 +236,10 @@ function nameOutput() {
 //Not sure if im using parameters correctly, should look into it at some point. 
 const currentEnemy = $('.enemy__image');
 function generateEnemy() {
-    const enemyIndex = Math.floor(Math.random() * enemies.length);
+    const enemyIndex = Math.floor(Math.random() * app.enemies.length);
     const speechIndex = Math.floor(Math.random() * app.enemySpeech.length);
-    currentEnemy.attr('src', enemies[enemyIndex].src);
-    $('.enemy__name--output').text(enemies[enemyIndex].name);
+    currentEnemy.attr('src', app.enemies[enemyIndex].src);
+    $('.enemy__name--output').text(app.enemies[enemyIndex].name);
     $('.enemy__speech--output').text(app.enemySpeech[speechIndex]); 
     if(finalBoss) {
         $('.enemy__image').attr('src', './Assets/Enemies/final-boss.png');
@@ -264,14 +251,14 @@ function generateEnemy() {
 
 // Function to generate next enemy, 
 // with a settimeout to give enough time for doDamage function to trigger properly.
-function generateNextEnemy() {
+app.generateNextEnemy = function(){
     setTimeout(function(){
         generateEnemy();
     }, 600);
 };
 
 //Function to start game.
-function startGame() {
+app.startGame = function(){
     $('#title__screen').hide();
     $('.name__form--container').hide();
     $('.introduction__container').hide();
@@ -279,43 +266,43 @@ function startGame() {
     $('.enemy__container').show();
     $('.player__hp--output').text(currentPlayer.hp);
     $('#enemy-speech').text(currentEnemy1.taunt);
-    nameOutput();
-    runTimeInterval();
-    displayQuestion();
+    app.nameOutput();
+    app.runTimeInterval();
+    app.displayQuestion();
     generateEnemy();
 }
 //Submit name and start game
-$('.introduction__button').on('click', startGame)
+$('.introduction__button').on('click', app.startGame)
 
 //Time for questions 
 //Need to rename the following to be more semantic
 let time = 60;
-function questionTime() {
+app.questionTime = function(){
     time--;
     $('.player__time--output').text(time)
     if(time <= 0) {
-        clearTimeInterval();
-        takeHit();
-        displayQuestion();
+        app.clearTimeInterval();
+        app.takeHit();
+        app.displayQuestion();
         time = 60;
-        runTimeInterval();
-        gameOver();
+        app.runTimeInterval();
+        app.gameOver();
     }
 };
 
 //Funtion that clears the time countdown
-function clearTimeInterval() {
+app.clearTimeInterval = function(){
     clearInterval(timeinterval);
 };
 
 //Function that runs setinterval
 let timeinterval;
-function runTimeInterval() {
-    timeinterval = setInterval(questionTime, 1000);
+app.runTimeInterval = function(){
+    timeinterval = setInterval(app.questionTime, 1000);
 };
 
 //function to reset game 
-function returnToTitle() {
+app.returnToTitle = function(){
     $('#title__screen').show();
     $('#title__screen--button').show();
     $('.title__screen--heroes').show();
@@ -326,20 +313,20 @@ function returnToTitle() {
     time = 60;
     questionIndex = -1;
     finalBoss = false;
-    clearTimeInterval();
-    init();
+    app.clearTimeInterval();
+    app.init();
 }
 //Runs above function on click
-$('.fa-home').click(returnToTitle);
-$('.replay__button').on('click', returnToTitle);
-$('.return__home').on('click', returnToTitle);
+$('.fa-home').click(app.returnToTitle);
+$('.replay__button').on('click', app.returnToTitle);
+$('.return__home').on('click', app.returnToTitle);
 
 //Function to take 
-function takeHit() {
+app.takeHit = function(){
     currentPlayer.hp -= 25;
     $('.player__hp--output').text(currentPlayer.hp);
     $('#damage-overlay').addClass('damage');
-    takeHitSound.play();
+    app.takeHitSound.play();
     setTimeout(function() {
         $('#damage-overlay').removeClass('damage');
     }, 400);
@@ -350,7 +337,7 @@ function takeHit() {
 
 //Function to trigger animation to do damage to enemy. 
 //Currently buggy, need to delay the generate enemy to give more time for animation to trigger.
-function doDamage() {
+app.doDamage = function(){
     currentEnemy.addClass('shake');
     setTimeout(function() {
         currentEnemy.removeClass('shake');
@@ -358,7 +345,7 @@ function doDamage() {
 };
 
 //function to indicate game over
-function gameOver() {
+app.gameOver = function(){
     if (currentPlayer.hp === 0) {
         $('.gameOver__screen').show();
         $('.logic__container').hide();
@@ -367,38 +354,38 @@ function gameOver() {
 };
 
 //Function to display game win screen.
-function gameWon() {
+app.gameWon = function(){
     $('.logic__container').hide();
     $('.enemy__container').hide();
     $('.gameWin__message').text(`Congratulations ${currentPlayer.name}! You have successfully 
     defeated the dragon and won the game, please play again!`); 
     $('.gameWin__screen').show();
-    winSound.play();
+    app.winSound.play();
 };
 
 //Function to display boss questions
-function displayBossQuestions() {
-    $('.logic__question--output').text(`${bossQuestions[questionIndex].question}`);
-    $('#a').text(bossQuestions[questionIndex].options.a);
-    $('#b').text(bossQuestions[questionIndex].options.b);
-    $('#c').text(bossQuestions[questionIndex].options.c);
+app.displayBossQuestions = function(){
+    $('.logic__question--output').text(`${app.bossQuestions[questionIndex].question}`);
+    $('#a').text(app.bossQuestions[questionIndex].options.a);
+    $('#b').text(app.bossQuestions[questionIndex].options.b);
+    $('#c').text(app.bossQuestions[questionIndex].options.c);
 }
 
 //Function to display question
 let questionIndex = -1;
 let finalBoss = false;
-function displayQuestion() {
+app.displayQuestion = function(){
     questionIndex++;
-    if (questionIndex < questions.length) {
-        $('.logic__question--output').text(`${questions[questionIndex].question}`);
-        $('#a').text(questions[questionIndex].options.a);
-        $('#b').text(questions[questionIndex].options.b);
-        $('#c').text(questions[questionIndex].options.c);
-    } else if (questionIndex === questions.length) {
+    if (questionIndex < app.questions.length) {
+        $('.logic__question--output').text(`${app.questions[questionIndex].question}`);
+        $('#a').text(app.questions[questionIndex].options.a);
+        $('#b').text(app.questions[questionIndex].options.b);
+        $('#c').text(app.questions[questionIndex].options.c);
+    } else if (questionIndex === app.questions.length) {
         finalBoss = true;
         if(finalBoss) {
             questionIndex = 0;
-            displayBossQuestions();
+            app.displayBossQuestions();
         };
     };
 };
@@ -408,37 +395,51 @@ const optionBtn = $('.logic__question--button');
 optionBtn.click(function() {
     //Should change to dataset instead of id in the future
     let btnid = ($(this).attr('id'));
-    if (btnid === questions[questionIndex].answer && !finalBoss) {
+    if (btnid === app.questions[questionIndex].answer && !finalBoss) {
         $('.player__answer--output').text('correct');
         $('.player__answer--output').css('color', 'lawngreen');
         time = 60;
-        doDamage();
-        displayQuestion();
-        generateNextEnemy();
-        clearTimeInterval();
-        runTimeInterval();
-        hitSound.play();
-    } else if (finalBoss && btnid === bossQuestions[questionIndex].answer) {
+        app.doDamage();
+        app.displayQuestion();
+        app.generateNextEnemy();
+        app.clearTimeInterval();
+        app.runTimeInterval();
+        app.hitSound.play();
+    } else if (finalBoss && btnid === app.bossQuestions[questionIndex].answer) {
         questionIndex++;
-        doDamage();
-        hitSound.play();
-        if (questionIndex === bossQuestions.length){
+        app.doDamage();
+        app.hitSound.play();
+        if (questionIndex === app.bossQuestions.length){
             finalBoss = false;
-            gameWon();
-            clearTimeInterval();
+            app.gameWon();
+            app.clearTimeInterval();
         } else {
-            displayBossQuestions();
+            app.displayBossQuestions();
         };
     } else {
         $('.player__answer--output').text('incorrect');
         $('.player__answer--output').css('color', 'red');
-        takeHit();
+        app.takeHit();
         time = 60;
-        clearTimeInterval();
-        runTimeInterval();
-        gameOver();
+        app.clearTimeInterval();
+        app.runTimeInterval();
+        app.gameOver();
     };
 });
+
+//Function to initialize game
+app.init = function(){
+    $('.name__form--container').hide();
+    $('.enemy__container').hide();
+    $('.logic__container').hide();
+    $('.gameOver__screen').hide();
+    $('.gameWin__screen').hide();
+    $('#final-boss-heading').hide();
+    $('.introduction__container').hide();
+};
+
+
+app.init();
 
 /* Notes:
 
