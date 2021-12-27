@@ -7,3 +7,8 @@
 ✔ Deal damage shake animation same issue as above. @done(21-10-31 15:06)
 
 ☐ Audio causing issues/throwing errors in console will need to investigate. 
+
+☐ Game not resetting correctly.
+    -- Timeinterval casusing issues
+    --questionIndex or question function causing issues
+    
