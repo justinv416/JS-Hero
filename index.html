@@ -27,7 +27,7 @@
                 <img src="./Assets/Heroes/hero.png" alt="An image of a male knight" class="hero">
                 <img src="./Assets/Heroes/fem-hero.png" alt="An image of a female knight" class="hero">
             </div>
-            <button type="button" id="title__screen--button">Start Game</button>
+            <button type="button" aria-label="start game" id="title__screen--button">Start Game</button>
         </div>
     </header>
 
@@ -44,7 +44,7 @@
             </div>
             <div class="introduction__container">
                 <p class="introduction__message"></p>
-                <button type="button" class="introduction__button">Begin</button>
+                <button type="button"  aria-label="begin game" class="introduction__button">Begin</button>
             </div>
             <div class="enemy__container">
                 <img src="" alt="An image displaying current enemy" class="enemy__image">
@@ -57,9 +57,9 @@
             <div class="logic__container">
                 <div class="logic__options">
                     <h2 class="logic__question">Question: <span class="logic__question--output"></span></h2>
-                    <button type="button" class="logic__question--button" id="a"></button>
-                    <button type="button" class="logic__question--button" id="b"></button>
-                    <button type="button" class="logic__question--button" id="c"></button>
+                    <button type="button" aria-label="option a" class="logic__question--button" id="a"></button>
+                    <button type="button" aria-label="option b" class="logic__question--button" id="b"></button>
+                    <button type="button" aria-label="option c" class="logic__question--button" id="c"></button>
                 </div>
                 <div class="player__ui">
                     <p class="player__ui--information">Hero Name: <span class="player__name--output output"></span></p>
@@ -70,11 +70,11 @@
             </div>
             <div class="gameOver__screen">
                 <p class="gameOver__text">Game Over</p>
-                <button type="button" class="replay__button">Play Again?</button>
+                <button type="button" aria-label="replay button" class="replay__button">Play Again?</button>
             </div>
             <div class="gameWin__screen">
                 <p class="gameWin__message"></p>
-                <button type="button" class="return__home">Return To Title</button>
+                <button type="button" aria-label="reutrn to title" class="return__home">Return To Title</button>
             </div>
         </div>
     </main>

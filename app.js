@@ -292,6 +292,7 @@ app.questionTime = function(){
         app.displayQuestion();
         app.time = 60;
         app.runTimeInterval();
+        app.gameOver();
     };
 };
 

@@ -20,9 +20,6 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 /* Global styling */
 body {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   font-family: 'VT323', monospace;
   background: url(./Assets/battle-background-sunny-hillsx1.png) no-repeat center center fixed;
   background-size: cover;
@@ -64,16 +61,15 @@ a {
   margin: 0 auto;
 }
 
-main .wrapper {
+main .wrapper, header .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 /* Header section */
-.title__screen {
-  margin: auto;
-}
+
 
 .title__screen--heading {
   color: var(--color-primary-gold);
@@ -83,7 +79,6 @@ main .wrapper {
 }
 
  .hero {
-  width: 100%;
   max-height: 500px;
   image-rendering: pixelated;
 }
@@ -102,6 +97,7 @@ main .wrapper {
   display: flex;
   align-items: center;
   margin: 50px 0;
+  justify-content: center;
 }
 
 .title__screen--heroes img:first-child {
@@ -212,9 +208,8 @@ main .wrapper {
   transition: all .2s ease-in-out;
   border-radius: 10px;
   box-shadow: 3px 3px var(--color-text-secondary);
-  margin: auto;
   padding: 5px 0;
-  width: 100%;
+  width: 40%;
 }
 
 #title__screen--button:hover, #credits-btn:hover,
@@ -378,6 +373,10 @@ footer a {
     font-size: 5rem;
   }
 
+  #title__screen--button {
+    width: 100%;
+  }
+
   .introduction__container, #name__form, 
   .gameOver__screen, .gameWin__screen {
     padding: 50px 0;
@@ -393,16 +392,31 @@ footer a {
     margin-top: 10px;
   }
 
+  .logic__container {
+    margin: 20px 0;
+  }
+
   .enemy__name, .enemy__speech,
   .logic__question, .logic__question--button{
     font-size: 1.5rem;
   }
 
+  .enemy__container {
+    margin: 0;
+  }
+
   .enemy__image {
-    height: 300px;
+    max-height: 200px;
+    width: 50%;
   }
 
   .fa-home {
     font-size: 3rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero {
+    max-height: 300px;
   }
 }
