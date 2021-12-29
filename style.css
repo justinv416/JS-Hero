@@ -33,7 +33,7 @@ body {
 
 button, input[type=submit] { 
   font-family: 'VT323', monospace;
-  font-size: 30px;
+  font-size: 2rem;
 }
 
 footer {
@@ -84,7 +84,6 @@ main .wrapper {
 
  .hero {
   width: 100%;
-  max-width: 300px;
   max-height: 500px;
   image-rendering: pixelated;
 }
@@ -391,7 +390,12 @@ footer a {
 
   .enemy__ui {
     width: 90%;
-    margin-top: 30px;
+    margin-top: 10px;
+  }
+
+  .enemy__name, .enemy__speech,
+  .logic__question, .logic__question--button{
+    font-size: 1.5rem;
   }
 
   .enemy__image {

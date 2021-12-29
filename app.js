@@ -67,14 +67,6 @@ app.winSound = new Howl({
     autoplay: false
 });
 
-//Function to initialize game
-app.init = function(){
-    app.hideOnInit();
-    app.gameControls();
-    app.answerLogic($('.logic__question--button'));
-    app.resetGame();
-};
-
 //Questions for game. 
 app.questions = [
     {
@@ -272,7 +264,6 @@ app.startGame = function(){
     $('.player__hp--output').text(app.currentPlayer.hp);
     $('#enemy-speech').text(currentEnemy1.taunt);
     app.nameOutput($('#player__name--input').val());
-    app.resetGame();
     app.runTimeInterval();
     app.displayQuestion();
     app.generateEnemy($('.enemy__image'));
@@ -290,14 +281,6 @@ app.generateNextEnemy = function(){
 app.time = 60;
 //Function that runs setinterval
 app.timeInterval;
-app.runTimeInterval = function(){
-    app.timeInterval = setInterval(app.questionTime, 1000);
-};
-
-//Function that clears the time countdown
-app.clearTimeInterval = function(){
-    clearInterval(app.timeInterval);
-};
 
 //Function for question timer. 
 app.questionTime = function(){
@@ -309,8 +292,16 @@ app.questionTime = function(){
         app.displayQuestion();
         app.time = 60;
         app.runTimeInterval();
-        app.gameOver();
     };
+};
+
+app.runTimeInterval = function(){
+    app.timeInterval = setInterval(app.questionTime, 1000);
+};
+
+//Function that clears the time countdown
+app.clearTimeInterval = function(){
+    clearInterval(app.timeInterval);
 };
 
 //Function to take 
@@ -325,7 +316,7 @@ app.takeHit = function(){
     if (app.currentPlayer.hp === 0) {
         app.currentPlayer.hp === 0;
     };
-}
+};
 
 //Function to trigger animation to do damage to enemy. 
 app.doDamage = function(currentEnemy){
@@ -338,6 +329,8 @@ app.doDamage = function(currentEnemy){
 //function to indicate game over
 app.gameOver = function(){
     if (app.currentPlayer.hp === 0) {
+        app.clearTimeInterval()
+        app.currentPlayer.hp = 100;
         $('.gameOver__screen').show();
         $('.logic__container').hide();
         $('.enemy__container').hide();
@@ -366,28 +359,28 @@ app.displayBossQuestions = function(){
 app.answerLogic = function(button, buttonId){
     button.click(function() {
     //Should change to dataset instead of id in the future
-    buttonId = ($(this).attr('id'));
-    if (buttonId === app.questions[app.questionIndex].answer && !app.finalBoss) {
-        $('.player__answer--output').text('correct');
-        $('.player__answer--output').css('color', 'lawngreen');
-        app.time = 60;
-        app.doDamage($('.enemy__image'));
-        app.displayQuestion();
-        app.generateNextEnemy();
-        app.clearTimeInterval();
-        app.runTimeInterval();
-        app.hitSound.play();
-    } else if (app.finalBoss && buttonId === app.bossQuestions[app.questionIndex].answer) {
-        app.questionIndex++;
-        app.doDamage($('.enemy__image'));
-        app.hitSound.play();
-        if (app.questionIndex === app.bossQuestions.length){
-            app.finalBoss = false;
-            app.gameWon();
+        buttonId = ($(this).attr('id'));
+        if (buttonId === app.questions[app.questionIndex].answer && !app.finalBoss) {
+            $('.player__answer--output').text('correct');
+            $('.player__answer--output').css('color', 'lawngreen');
+            app.time = 60;
+            app.doDamage($('.enemy__image'));
+            app.displayQuestion();
+            app.generateNextEnemy();
             app.clearTimeInterval();
-        } else {
-            app.displayBossQuestions();
-        };
+            app.runTimeInterval();
+            app.hitSound.play();
+        } else if (app.finalBoss && buttonId === app.bossQuestions[app.questionIndex].answer) {
+            app.questionIndex++;
+            app.doDamage($('.enemy__image'));
+            app.hitSound.play();
+                if (app.questionIndex === app.bossQuestions.length){
+                app.finalBoss = false;
+                app.gameWon();
+                app.clearTimeInterval();
+                } else {
+                app.displayBossQuestions();
+                };
         } else {
             $('.player__answer--output').text('incorrect');
             $('.player__answer--output').css('color', 'red');
@@ -402,7 +395,7 @@ app.answerLogic = function(button, buttonId){
 
 //function to reset game 
 app.returnToTitle = function(){
-    $('.title__screen').show();
+    app.hideOnInit();
     app.init();
 }
 
@@ -411,17 +404,19 @@ app.gameControls = function(){
     $('#title__screen--button').on('click', app.nameInputStart);
     $('#player__name--submit').on('click', app.gameIntro);
     $('.introduction__button').on('click', app.startGame)
-    $('.fa-home').on('click', app.returnToTitle);
-    $('.replay__button').on('click', app.returnToTitle);
-    $('.return__home').on('click', app.returnToTitle);
+    $('.fa-home').on('click', app.resetGame);
+    $('.replay__button').on('click', app.resetGame);
+    $('.return__home').on('click', app.resetGame);
 }
 
 app.resetGame = function(){
     app.questionIndex = -1;
-    app.time = 60;
     app.clearTimeInterval();
+    app.time = 60;
     app.currentPlayer.hp = 100;
     app.finalBoss = false;
+    $('.title__screen').show();
+    app.hideOnInit();
     $('.player__hp--output').text(app.currentPlayer.hp);
     $('player__answer--output').text('');
 }
@@ -435,5 +430,13 @@ app.hideOnInit = function() {
     $('#final-boss-heading').hide();
     $('.introduction__container').hide();
 }
+
+//Function to initialize game
+app.init = function(){
+    app.resetGame();
+    app.hideOnInit();
+    app.gameControls();
+    app.answerLogic($('.logic__question--button'));
+};
 
 app.init();
