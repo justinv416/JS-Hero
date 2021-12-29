@@ -8,7 +8,7 @@
 
 ☐ Audio causing issues/throwing errors in console will need to investigate. 
 
-☐ Game not resetting correctly.
-    -- Timeinterval casusing issues
-    --questionIndex or question function causing issues
+☐ slight bug where sometimes when inputting name will return to title screen
+
+✔ Game not resetting correctly. @done(21-12-28 14:39)
     

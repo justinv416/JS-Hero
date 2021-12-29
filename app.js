@@ -20,8 +20,8 @@ app.enemySpeech = [
     "Yawn...."    
 ];
 
-// Class contructors for player and enemies
-// Class contructors maybe a little redundant might change in future. 
+// Class constructors for player and enemies
+// Class constructors maybe a little redundant might change in future. 
 app.player = class Player {
     constructor(name, hp) {
         this.name = name;
@@ -71,11 +71,11 @@ app.winSound = new Howl({
 app.init = function(){
     app.hideOnInit();
     app.gameControls();
+    app.answerLogic($('.logic__question--button'));
     app.resetGame();
 };
 
 //Questions for game. 
-//Should store in a seperate file at some point, and either import/fetch. 
 app.questions = [
     {
         question: 'What is the correct syntax for a template literal?',
@@ -224,18 +224,15 @@ app.gameIntro = function(){
 };
 
 //Function to display the user name
-app.nameOutput = function(){
-    app.currentPlayer.name = $('#player__name--input').val();
-    $('.player__name--output').text(app.currentPlayer.name)
+app.nameOutput = function(name){
+    $('.player__name--output').text(name)
 };
 
 //function to generate a random enemy, working but should refactor.
-//Not sure if im using parameters correctly, should look into it at some point. 
-app.currentEnemy = $('.enemy__image');
-app.generateEnemy = function(){
+app.generateEnemy = function(currentEnemy){
     const enemyIndex = Math.floor(Math.random() * app.enemies.length);
     const speechIndex = Math.floor(Math.random() * app.enemySpeech.length);
-    app.currentEnemy.attr('src', app.enemies[enemyIndex].src);
+    currentEnemy.attr('src', app.enemies[enemyIndex].src);
     $('.enemy__name--output').text(app.enemies[enemyIndex].name);
     $('.enemy__speech--output').text(app.enemySpeech[speechIndex]); 
     if(app.finalBoss) {
@@ -263,7 +260,6 @@ app.displayQuestion = function(){
             app.displayBossQuestions();
         };
     };
-    console.log(app.questionIndex)
 };
 
 //Function to start game.
@@ -275,26 +271,23 @@ app.startGame = function(){
     $('.enemy__container').show();
     $('.player__hp--output').text(app.currentPlayer.hp);
     $('#enemy-speech').text(currentEnemy1.taunt);
-    app.nameOutput();
+    app.nameOutput($('#player__name--input').val());
     app.resetGame();
     app.runTimeInterval();
     app.displayQuestion();
-    app.generateEnemy();
+    app.generateEnemy($('.enemy__image'));
 }
 
 // Function to generate next enemy, 
 // with a setTimeout to give enough time for doDamage function to trigger properly.
 app.generateNextEnemy = function(){
     setTimeout(function(){
-        app.generateEnemy();
+        app.generateEnemy($('.enemy__image'));
     }, 600);
 };
 
 //Time for questions 
 app.time = 60;
-
-
-
 //Function that runs setinterval
 app.timeInterval;
 app.runTimeInterval = function(){
@@ -306,10 +299,10 @@ app.clearTimeInterval = function(){
     clearInterval(app.timeInterval);
 };
 
-
+//Function for question timer. 
 app.questionTime = function(){
     app.time--;
-    $('.player__time--output').text(app.time)
+    $('.player__time--output').text(app.time);
     if(app.time <= 0) {
         app.clearTimeInterval();
         app.takeHit();
@@ -317,11 +310,8 @@ app.questionTime = function(){
         app.time = 60;
         app.runTimeInterval();
         app.gameOver();
-    }
+    };
 };
-
-console.log(app.timeInterval)
-
 
 //Function to take 
 app.takeHit = function(){
@@ -338,11 +328,10 @@ app.takeHit = function(){
 }
 
 //Function to trigger animation to do damage to enemy. 
-//Currently buggy, need to delay the generate enemy to give more time for animation to trigger.
-app.doDamage = function(){
-    app.currentEnemy.addClass('shake');
+app.doDamage = function(currentEnemy){
+    currentEnemy.addClass('shake');
     setTimeout(function() {
-        app.currentEnemy.removeClass('shake');
+        currentEnemy.removeClass('shake');
     }, 400);
 };
 
@@ -365,8 +354,6 @@ app.gameWon = function(){
     app.winSound.play();
 };
 
-
-
 //Function to display boss questions
 app.displayBossQuestions = function(){
     $('.logic__question--output').text(`${app.bossQuestions[app.questionIndex].question}`);
@@ -376,23 +363,23 @@ app.displayBossQuestions = function(){
 }
 
 //Binds a function to each option button to check if answer is correct/incorrect
-app.optionBtn = $('.logic__question--button');
-app.optionBtn.click(function() {
+app.answerLogic = function(button, buttonId){
+    button.click(function() {
     //Should change to dataset instead of id in the future
-    const btnId = ($(this).attr('id'));
-    if (btnId === app.questions[app.questionIndex].answer && !app.finalBoss) {
+    buttonId = ($(this).attr('id'));
+    if (buttonId === app.questions[app.questionIndex].answer && !app.finalBoss) {
         $('.player__answer--output').text('correct');
         $('.player__answer--output').css('color', 'lawngreen');
         app.time = 60;
-        app.doDamage();
+        app.doDamage($('.enemy__image'));
         app.displayQuestion();
         app.generateNextEnemy();
         app.clearTimeInterval();
         app.runTimeInterval();
         app.hitSound.play();
-    } else if (app.finalBoss && btnId === app.bossQuestions[app.questionIndex].answer) {
+    } else if (app.finalBoss && buttonId === app.bossQuestions[app.questionIndex].answer) {
         app.questionIndex++;
-        app.doDamage();
+        app.doDamage($('.enemy__image'));
         app.hitSound.play();
         if (app.questionIndex === app.bossQuestions.length){
             app.finalBoss = false;
@@ -401,16 +388,17 @@ app.optionBtn.click(function() {
         } else {
             app.displayBossQuestions();
         };
-    } else {
-        $('.player__answer--output').text('incorrect');
-        $('.player__answer--output').css('color', 'red');
-        app.takeHit();
-        app.time = 60;
-        app.clearTimeInterval();
-        app.runTimeInterval();
-        app.gameOver();
-    };
-});
+        } else {
+            $('.player__answer--output').text('incorrect');
+            $('.player__answer--output').css('color', 'red');
+            app.takeHit();
+            app.time = 60;
+            app.clearTimeInterval();
+            app.runTimeInterval();
+            app.gameOver();
+        };
+    });
+};
 
 //function to reset game 
 app.returnToTitle = function(){
@@ -448,14 +436,4 @@ app.hideOnInit = function() {
     $('.introduction__container').hide();
 }
 
-
-
-console.log(app.questionIndex)
-
 app.init();
-
-/* Notes:
-
-There is a slight bug where sometimes when inputting name will return to title screen, please ignore and try again, will work on subsequent tries. 
-
-*/
