@@ -69,7 +69,11 @@ main .wrapper, header .wrapper {
 }
 
 /* Header section */
-
+.title__screen {
+  height: 90%;
+  display: flex;
+  align-items: center;
+}
 
 .title__screen--heading {
   color: var(--color-primary-gold);
@@ -79,14 +83,14 @@ main .wrapper, header .wrapper {
 }
 
  .hero {
-  max-height: 500px;
+  max-height: 400px;
   image-rendering: pixelated;
 }
 
 .enemy__image {
   width: 100%;
   max-width: 300px;
-  max-height: 400px;
+  max-height: 300px;
 }
 
 .enemy__container, #title-hero-container {
@@ -121,9 +125,9 @@ main .wrapper, header .wrapper {
 
 .logic__question {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-shadow: 2px 2px var(--color-text-secondary);
-  margin: 1rem auto;
+  padding: 10px 0;
 }
 
 .logic__options {
@@ -136,6 +140,7 @@ main .wrapper, header .wrapper {
   color: var(--color-text);
   border-top: 2px solid var(--color-primary-gold);
   padding: 10px 0;
+  font-size: 1.5rem;
 }
 
 .option-btn:last-of-type {
@@ -166,12 +171,7 @@ main .wrapper, header .wrapper {
 /* Enemy UI */
 .enemy__ui {
   width: 50%;
-  height: 70%;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
+  height: min-content;
   border: 1px solid var(--color-primary-gold);
   border-radius: 10px;
   color: white;
@@ -179,6 +179,7 @@ main .wrapper, header .wrapper {
 }
 
 .enemy__name, .enemy__speech {
+  text-align: center;
   font-size: 2rem;
   margin: 10px auto;
 }
@@ -190,13 +191,14 @@ main .wrapper, header .wrapper {
 .enemy__container {
   display: flex;
   width: 100%;
-  margin-top: 5rem;
+  margin-top: 10rem;
   justify-content: space-evenly;
 }
 
 #final-boss-heading {
   font-size: 40px;
   color: var(--color-primary-gold);
+  text-align: center;
   text-shadow: 3px 3px var(--color-text-secondary);
 }
 
@@ -221,17 +223,17 @@ main .wrapper, header .wrapper {
 }
 
 /* Introduction */
-.introduction__container, #name__form, 
-.gameOver__screen, .gameWin__screen {
+.introduction__message--container, #name__form, 
+.gameOver__text--container, .gameWin__message--container {
   background: linear-gradient(360deg, hsla(246, 100%, 18%, 1) 0%, hsla(251, 100%, 51%, 1) 100%);;
   border: 3px solid var(--color-primary-gold);
   border-radius: 10px;
-  width: 100%;
-  padding: 200px 0;
+  width: 75%;
+  padding: 100px 0;
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 150px;
+  margin: 0 auto;
 }
 
 .introduction__message, .gameWin__message {
@@ -251,8 +253,12 @@ main .wrapper, header .wrapper {
 }
 
 /* Name input UI */
-.name__form--container {
+.name__form--container, .introduction__container,
+.gameOver__screen, .gameWin__screen {
   width: 100%;
+  height: 90vh;
+  display: flex;
+  align-items: center;
 }
 
 #player__name--input {
@@ -285,7 +291,7 @@ main .wrapper, header .wrapper {
 
 /* Home icon */
 .fa-home {
-  font-size: 3.5rem;
+  font-size: 3rem;
   color: var(--color-text);
   /* Note: image-rendering: pixelated; not currently supported by firefox */
   image-rendering: pixelated;
@@ -362,6 +368,10 @@ footer a {
     max-width: 90%;
   }
 
+  .enemy__image {
+    max-height: 300px;
+  }
+
   .introduction__button, #player__name--submit, 
   .replay__button, .return__home {
     width: 80%;
@@ -371,15 +381,22 @@ footer a {
 @media (max-width: 700px) { 
   .title__screen--heading {
     font-size: 5rem;
+    margin-top: 50px;
+  }
+
+  .hero {
+    max-height: 300px;
   }
 
   #title__screen--button {
     width: 100%;
+    margin-bottom: 50px;
   }
 
-  .introduction__container, #name__form, 
-  .gameOver__screen, .gameWin__screen {
+  .introduction__message--container, #name__form, 
+  .gameOver__text--container, .gameWin__message--container {
     padding: 50px 0;
+    width: 100%;
   }
 
   .enemy__container {
@@ -409,14 +426,14 @@ footer a {
     max-height: 200px;
     width: 50%;
   }
-
-  .fa-home {
-    font-size: 3rem;
-  }
 }
 
 @media (max-width: 500px) {
-  .hero {
-    max-height: 300px;
-  }
+    #player__name--label {
+      font-size: 1.5rem;
+    }
+
+    #name__form {
+      margin: 150px 0;
+    }
 }
